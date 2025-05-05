@@ -9,6 +9,29 @@
 
 ]]--
 
+local Drawing = Drawing or loadstring(game:HttpGet("https://raw.githubusercontent.com/stealthware/stealthware/main/drawing.lua"))()
+
+local Text = Drawing.new("Text")
+Text.Size = 22
+Text.Font = Drawing.Fonts.UI
+Text.Position = Vector2.new(70, 85)
+Text.Text = "StealthWare"
+Text.Visible = true
+
+Text.Outline = true
+Text.OutlineColor = Color3.fromRGB(0, 0, 0)
+
+local speed = 0.5 -- 🌈 Increase for faster rainbow, decrease for slower
+
+local function getRainbowColor()
+    return Color3.fromHSV((tick() * speed) % 1, 1, 1)
+end
+
+game:GetService("RunService").RenderStepped:Connect(function()
+    Text.Color = getRainbowColor()
+end)
+
+
 local obf_stringchar = string.char;
 local obf_stringbyte = string.byte;
 local obf_stringsub = string.sub;
